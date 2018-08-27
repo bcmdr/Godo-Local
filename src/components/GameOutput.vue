@@ -1,10 +1,10 @@
 <template>
-  <div class="game-output">
+  <div class="game-output" @click="handleClick">
     <section class="output-items">
       <output-item
-        v-for="(task, id) in tasks"
+        v-for="(output, id) in inputs"
         :key="id"
-        :task="task"
+        :output="output"
       />
     </section>
   </div>
@@ -12,6 +12,7 @@
 
 <script>
 import OutputItem from "@/components/OutputItem.vue";
+import Content from "@/content";
 
 export default {
   name: "GameOutput",
@@ -19,21 +20,32 @@ export default {
     OutputItem
   },
   computed: {
+    story() {
+      return Content.story.chapter.one;
+    },
     tasks() {
       return this.$store.state.tasks.slice();
+    },
+    outputs() {
+      return this.$store.state.outputs.slice();
+    },
+    inputs() {
+      return this.$store.state.inputs.slice().reverse();
     }
+  },
+  methods: {
+    handleClick() {
+      this.$store.dispatch("clearOutput");
+    }
+  },
+  created() {
+    console.log(this.story);
   }
 };
 </script>
 
 <style scoped>
 section {
-  margin: 20px 0;
-}
-
-.task-items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  margin: 20px 20px;
 }
 </style>

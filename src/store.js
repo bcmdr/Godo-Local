@@ -4,7 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
-const STORAGE_KEY = "godo-vue";
+const STORAGE_KEY = "vanished-0.0.1";
 
 const localStoragePlugin = store => {
   store.subscribe((mutation, { tasks }) => {
@@ -14,33 +14,45 @@ const localStoragePlugin = store => {
 
 export default new Vuex.Store({
   state: {
-    tasks: []
+    tasks: [],
+    inputs: [],
+    outputs: []
   },
   plugins: [createPersistedState(), localStoragePlugin],
   mutations: {
     addTask(state, task) {
       state.tasks.push(task);
     },
+    clearOutput(state) {
+      state.outputs = [];
+    },
+    addOutput(state, output) {
+      state.outputs.push(output);
+    },
+    logInput(state, input) {
+      state.inputs.push(input);
+    },
     removeTask(state, task) {
       state.tasks.splice(state.tasks.indexOf(task), 1);
-    },
-    editTask(
-      state,
-      {
-        task,
-        isActive = task.isActive,
-        startedAt = task.startedAt,
-        stoppedAt = task.stoppedAt,
-        completed = task.completed
-      }
-    ) {
-      (task.isActive = isActive),
-        (task.stoppedAt = stoppedAt),
-        (task.startedAt = startedAt),
-        (task.completed = completed);
     }
   },
   actions: {
+    logInput({ commit }, text) {
+      commit("logInput", {
+        text
+      });
+    },
+
+    addOutput({ commit }, text) {
+      commit("addOutput", {
+        text
+      });
+    },
+
+    clearOutput({ commit }) {
+      commit("clearOutput");
+    },
+
     addTask({ commit }, title) {
       commit("addTask", {
         title,
