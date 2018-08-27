@@ -1,34 +1,34 @@
 <template>
   <form @submit.prevent="addTask()">
-    <input type="text" v-model="title" placeholder="Type Here..." class="go-input">
-    <button @click.prevent="handleSubmitClick" type="submit" :class="{ active: title }">Enter</button>
+    <input type="text" v-model="inputText" placeholder="Type Here..." class="user-input">
+    <button @click.prevent="handleSubmitClick" type="submit" :class="{ active: inputText }">Enter</button>
   </form>
 </template>
 
 <script>
 export default {
-  name: "TaskAdd",
+  name: "UserInput",
   data() {
     return {
-      title: ""
+      inputText: ""
     };
   },
   methods: {
     handleSubmitClick() {
-      if (this.title) {
-        this.addTask();
+      if (this.inputText) {
+        this.logInput();
       } else {
-        document.querySelector(".go-input").focus();
+        document.querySelector(".user-input").focus();
       }
     },
-    addTask() {
+    logInput() {
       // Trim Whitespace and cancel if empty
-      let formattedTitle = this.title.trim();
-      if (!formattedTitle) return;
+      let formattedInputText = this.inputText.trim();
+      if (!formattedInputText) return;
 
-      this.$store.dispatch("addTask", formattedTitle);
+      this.$store.dispatch("logInput", formattedInputText);
 
-      this.title = "";
+      this.inputText = "";
     }
   }
 };
