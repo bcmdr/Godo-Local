@@ -1,19 +1,24 @@
 <template>
   <main id="app">
-    <TaskAdd />
-    <TaskList />
+    <user-input />
+    <game-output />
   </main>
 </template>
 
 <script>
-import TaskList from "./components/TaskList.vue";
-import TaskAdd from "@/components/TaskAdd.vue";
+import UserInput from "@/components/UserInput.vue";
+import GameOutput from "@/components/GameOutput.vue";
+// import TaskList from "@/components/TaskList.vue";
+// import TaskAdd from "@/components/TaskAdd.vue";
 
 export default {
   name: "app",
   components: {
-    TaskAdd,
-    TaskList
+    UserInput,
+    GameOutput
+  },
+  created() {
+    console.log("Hello World");
   }
 };
 </script>
