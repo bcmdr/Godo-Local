@@ -1,10 +1,8 @@
 <template>
-<div class="task-add">
   <form @submit.prevent="addTask()">
-    <input type="text" v-model="title" placeholder="Get Started" class="go-input">
-    <button @click.prevent="handleSubmitClick" type="submit" :class="{ active: title }">Add</button>
+    <input type="text" v-model="title" placeholder="Type Here..." class="go-input">
+    <button @click.prevent="handleSubmitClick" type="submit" :class="{ active: title }">Enter</button>
   </form>
-</div>
 </template>
 
 <script>
@@ -37,23 +35,16 @@ export default {
 </script>
 
 <style scoped>
-.task-add {
-  display: flex;
-  justify-content: center;
-}
-
 form {
+  color: white;
   display: flex;
   padding: 8px;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
-  box-sizing: border-box;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid white;
 }
 
 input[type="text"] {
-  min-width: 80px;
+  color: white;
+  flex-grow: 1;
   padding: 10px;
   border: none;
   margin-right: 10px;
@@ -61,8 +52,9 @@ input[type="text"] {
   background: transparent;
 }
 
-button.active {
-  color: white;
-  background: rgba(0, 0, 0, 0.8);
+button {
+  color: #111;
+  border: 1px solid white;
+  background: #eee;
 }
 </style>

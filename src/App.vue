@@ -1,13 +1,8 @@
 <template>
-  <div id="app">
-    <section class="top">
-      <TaskAdd />
-      <TaskList />
-    </section>
-    <section class="footer">
-      GoDo © 2018 <a href="twitter.com/bcmdr">Brett Commandeur</a> | <a href="https://github.com/bcmdr/Godo-Local">Version 1.1.0</a>
-    </section>
-  </div>
+  <main id="app">
+    <TaskAdd />
+    <TaskList />
+  </main>
 </template>
 
 <script>
@@ -25,35 +20,17 @@ export default {
 
 <style>
 #app {
-  justify-content: space-between;
-  display: flex;
-  flex-direction: column;
-  padding-top: 30px;
-  color: #111;
-  min-height: 100vh;
-  background: #00b4db; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    -45deg,
-    #0083b0,
-    #00b4db
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    -45deg,
-    #0083b0,
-    #00b4db
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 html {
-  height: 100%;
   box-sizing: border-box;
+  height: 100%;
+  background: #111;
 }
 
 body {
-  position: relative;
   margin: 0;
-  padding-bottom: 6rem;
-  min-height: 100%;
+  padding: 0;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -69,27 +46,12 @@ a {
   color: inherit;
 }
 
-body {
-  margin: 0;
-  height: 100%;
-}
-
 button {
   cursor: pointer;
-  border-radius: 3px;
   padding: 10px 15px;
   font-size: 0.8em;
   border: none;
-  background: transparent;
-}
-button:active {
-  box-shadow: inset 0 0 5px rgb(0, 0, 0);
-}
-.footer {
-  font-size: 0.8rem;
-  width: 100%;
-  bottom: 10px;
-  text-align: center;
-  padding-top: 30px;
+  background: none;
+  border-radius: 3px;
 }
 </style>
