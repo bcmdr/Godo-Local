@@ -4,7 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
-const STORAGE_KEY = "vanished-0.0.1";
+const STORAGE_KEY = "vanished";
 
 const localStoragePlugin = store => {
   store.subscribe((mutation, { tasks }) => {
@@ -22,6 +22,9 @@ export default new Vuex.Store({
   mutations: {
     addTask(state, task) {
       state.tasks.push(task);
+    },
+    clearInput(state) {
+      state.inputs = [];
     },
     clearOutput(state) {
       state.outputs = [];
@@ -41,6 +44,10 @@ export default new Vuex.Store({
       commit("logInput", {
         text
       });
+    },
+
+    clearInput({ commit }) {
+      commit("clearInput");
     },
 
     addOutput({ commit }, text) {

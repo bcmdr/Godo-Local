@@ -35,7 +35,8 @@ export default {
   },
   methods: {
     handleClick() {
-      this.$store.dispatch("clearOutput");
+      console.log("clearing");
+      this.$store.dispatch("clearInput");
     }
   },
   created() {
