@@ -1,4 +1,4 @@
-# Vanished
+# Vanished-Local
 
 ## Project setup
 ```
