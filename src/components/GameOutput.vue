@@ -44,8 +44,10 @@ export default {
   created() {
     this.clearLines();
     this.interval = setInterval(() => {
+      if (this.line + 1 > Content.story.chapter.one.length)
+        return clearInterval(this.interval);
       this.nextLine();
-    }, 3000);
+    }, 5000);
   }
 };
 </script>

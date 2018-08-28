@@ -2,10 +2,10 @@ export default {
   story: {
     chapter: {
       one: [
-        "You have died.",
+        "You are dead.",
         "You see a man.",
         "He is walking away.",
-        "He is carrying a light.",
+        "There is a light.",
         "The light is dimming.",
         "There are four walls.",
         "The windows are boarded.",
