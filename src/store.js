@@ -51,9 +51,7 @@ export default new Vuex.Store({
     logInput({
       commit
     }, text) {
-      commit("logInput", {
-        text
-      });
+      commit("logInput", text);
     },
 
     clearInputs({
@@ -91,35 +89,6 @@ export default new Vuex.Store({
         isActive: false,
         completed: false,
         times: 0
-      });
-    },
-
-    removeTask({
-      commit
-    }, task) {
-      commit("removeTask", task);
-    },
-
-    startTask({
-      commit
-    }, task) {
-      commit("editTask", {
-        task,
-        isActive: true,
-        startedAt: new Date()
-      });
-    },
-
-    stopTask({
-      commit
-    }, task) {
-      task.times = task.times + 1;
-      commit("editTask", {
-        task,
-        isActive: false,
-        stoppedAt: new Date(),
-        completed: true,
-        times: task.times
       });
     }
   }

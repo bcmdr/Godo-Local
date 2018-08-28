@@ -21,7 +21,10 @@ export default {
   },
   data() {
     return {
-      line: 0,
+      action: null,
+      room: null,
+      prompts: null,
+      line: null,
       interval: null
     };
   },
@@ -30,7 +33,7 @@ export default {
       return this.$store.state.outputs.slice().reverse();
     },
     inputs() {
-      return this.$store.state.inputs.slice().reverse();
+      return this.$store.state.inputs.slice();
     }
   },
   methods: {
@@ -40,18 +43,25 @@ export default {
     clearOutputs() {
       this.$store.dispatch("clearOutputs");
     },
-    nextLine() {
-      this.$store.dispatch("addOutput", Content.story.chapter.one[this.line++]);
+    handleAction(action) {
+      if (this.inputs.length > 0 && this.inputs.reverse()[0].includes(action)) {
+        this.action = action;
+        this.prompts = Content.rooms[this.room].actions[this.action];
+      }
     },
     nextInterval() {
       console.log(this.inputs);
-      if (this.line + 1 > Content.story.chapter.one.length) return;
-      this.nextLine();
+      this.handleAction("follow");
+      this.handleAction("wait");
+      this.$store.dispatch("addOutput", this.prompts.shift());
     }
   },
   created() {
     this.clearInputs();
     this.clearOutputs();
+    this.room = "one";
+    this.action = "none";
+    this.prompts = Content.rooms[this.room].actions[this.action];
     this.interval = setInterval(this.nextInterval, 5000);
   }
 };

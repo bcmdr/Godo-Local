@@ -26,7 +26,7 @@ export default {
       let input = this.inputText.trim();
       if (!input) return;
 
-      this.$store.dispatch("logInput", input);
+      this.$store.dispatch("logInput", input.toLowerCase());
       this.$store.dispatch("addOutput", input);
 
       this.inputText = "";
