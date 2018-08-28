@@ -1,5 +1,5 @@
 <template>
-  <div class="game-output" @click="handleClick">
+  <div class="game-output">
     <section class="output-items">
       <output-item
         v-for="(item, id) in outputs"
@@ -21,7 +21,8 @@ export default {
   },
   data() {
     return {
-      line: 0
+      line: 0,
+      interval: null
     };
   },
   computed: {
@@ -33,15 +34,18 @@ export default {
     }
   },
   methods: {
-    handleClick() {
+    clearLines() {
       this.$store.dispatch("clearOutput");
+    },
+    nextLine() {
+      this.$store.dispatch("addOutput", Content.story.chapter.one[this.line++]);
     }
   },
   created() {
-    console.log(Content.story.chapter.one);
-    if (this.outputs.length === 0)
-      this.$store.dispatch("addOutput", Content.story.chapter.one[this.line]);
-    // this.$store.dispatch("loadOutput", Content.story.chapter.one);
+    this.clearLines();
+    this.interval = setInterval(() => {
+      this.nextLine();
+    }, 3000);
   }
 };
 </script>
