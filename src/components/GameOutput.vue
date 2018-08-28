@@ -34,20 +34,25 @@ export default {
     }
   },
   methods: {
-    clearLines() {
-      this.$store.dispatch("clearOutput");
+    clearInputs() {
+      this.$store.dispatch("clearInputs");
+    },
+    clearOutputs() {
+      this.$store.dispatch("clearOutputs");
     },
     nextLine() {
       this.$store.dispatch("addOutput", Content.story.chapter.one[this.line++]);
+    },
+    nextInterval() {
+      console.log(this.inputs);
+      if (this.line + 1 > Content.story.chapter.one.length) return;
+      this.nextLine();
     }
   },
   created() {
-    this.clearLines();
-    this.interval = setInterval(() => {
-      if (this.line + 1 > Content.story.chapter.one.length)
-        return clearInterval(this.interval);
-      this.nextLine();
-    }, 5000);
+    this.clearInputs();
+    this.clearOutputs();
+    this.interval = setInterval(this.nextInterval, 5000);
   }
 };
 </script>

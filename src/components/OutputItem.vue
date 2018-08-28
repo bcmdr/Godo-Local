@@ -9,14 +9,6 @@ export default {
   name: "OutputItem",
   props: {
     text: String
-  },
-  data() {
-    return {};
-  },
-  computed: {},
-  methods: {},
-  created() {
-    console.log(this.text);
   }
 };
 </script>

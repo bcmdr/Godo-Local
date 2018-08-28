@@ -23,10 +23,11 @@ export default {
     },
     logInput() {
       // Trim Whitespace and cancel if empty
-      let formattedInputText = this.inputText.trim();
-      if (!formattedInputText) return;
+      let input = this.inputText.trim();
+      if (!input) return;
 
-      this.$store.dispatch("logInput", formattedInputText);
+      this.$store.dispatch("logInput", input);
+      this.$store.dispatch("addOutput", input);
 
       this.inputText = "";
     }

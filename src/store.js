@@ -7,7 +7,9 @@ Vue.use(Vuex);
 const STORAGE_KEY = "vanished-0.0.1";
 
 const localStoragePlugin = store => {
-  store.subscribe((mutation, { tasks }) => {
+  store.subscribe((mutation, {
+    tasks
+  }) => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
   });
 };
@@ -24,13 +26,15 @@ export default new Vuex.Store({
     addTask(state, task) {
       state.tasks.push(task);
     },
-    clearInput(state) {
+    clearInputs(state) {
       state.inputs = [];
     },
-    clearOutput(state) {
+    clearOutputs(state) {
       state.outputs = [];
     },
-    loadOutput(state, { arr }) {
+    loadOutput(state, {
+      arr
+    }) {
       state.outputs = state.outputs.concat(arr);
     },
     addOutput(state, output) {
@@ -44,17 +48,23 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    logInput({ commit }, text) {
+    logInput({
+      commit
+    }, text) {
       commit("logInput", {
         text
       });
     },
 
-    clearInput({ commit }) {
-      commit("clearInput");
+    clearInputs({
+      commit
+    }) {
+      commit("clearInputs");
     },
 
-    addOutput({ commit }, text) {
+    addOutput({
+      commit
+    }, text) {
       commit("addOutput", {
         text
       });
@@ -64,11 +74,15 @@ export default new Vuex.Store({
     //   commit("loadOutput", { arr });
     // },
 
-    clearOutput({ commit }) {
-      commit("clearOutput");
+    clearOutputs({
+      commit
+    }) {
+      commit("clearOutputs");
     },
 
-    addTask({ commit }, title) {
+    addTask({
+      commit
+    }, title) {
       commit("addTask", {
         title,
         createdAt: new Date(),
@@ -80,11 +94,15 @@ export default new Vuex.Store({
       });
     },
 
-    removeTask({ commit }, task) {
+    removeTask({
+      commit
+    }, task) {
       commit("removeTask", task);
     },
 
-    startTask({ commit }, task) {
+    startTask({
+      commit
+    }, task) {
       commit("editTask", {
         task,
         isActive: true,
@@ -92,7 +110,9 @@ export default new Vuex.Store({
       });
     },
 
-    stopTask({ commit }, task) {
+    stopTask({
+      commit
+    }, task) {
       task.times = task.times + 1;
       commit("editTask", {
         task,
