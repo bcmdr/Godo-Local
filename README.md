@@ -1,4 +1,4 @@
-# godo-local
+# Vanished
 
 ## Project setup
 ```
