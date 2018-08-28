@@ -14,6 +14,7 @@ const localStoragePlugin = store => {
 
 export default new Vuex.Store({
   state: {
+    chapter: 1,
     tasks: [],
     inputs: [],
     outputs: []
@@ -23,8 +24,14 @@ export default new Vuex.Store({
     addTask(state, task) {
       state.tasks.push(task);
     },
+    clearInput(state) {
+      state.inputs = [];
+    },
     clearOutput(state) {
       state.outputs = [];
+    },
+    loadOutput(state, { arr }) {
+      state.outputs = state.outputs.concat(arr);
     },
     addOutput(state, output) {
       state.outputs.push(output);
@@ -43,11 +50,19 @@ export default new Vuex.Store({
       });
     },
 
+    clearInput({ commit }) {
+      commit("clearInput");
+    },
+
     addOutput({ commit }, text) {
       commit("addOutput", {
         text
       });
     },
+
+    // loadOutput({ commit }, arr) {
+    //   commit("loadOutput", { arr });
+    // },
 
     clearOutput({ commit }) {
       commit("clearOutput");

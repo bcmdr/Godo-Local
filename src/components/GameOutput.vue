@@ -1,10 +1,10 @@
 <template>
-  <div class="game-output" @click="handleClick">
+  <div class="game-output">
     <section class="output-items">
       <output-item
-        v-for="(output, id) in inputs"
+        v-for="(item, id) in outputs"
         :key="id"
-        :output="output"
+        :text="item.text"
       />
     </section>
   </div>
@@ -19,27 +19,33 @@ export default {
   components: {
     OutputItem
   },
+  data() {
+    return {
+      line: 0,
+      interval: null
+    };
+  },
   computed: {
-    story() {
-      return Content.story.chapter.one;
-    },
-    tasks() {
-      return this.$store.state.tasks.slice();
-    },
     outputs() {
-      return this.$store.state.outputs.slice();
+      return this.$store.state.outputs.slice().reverse();
     },
     inputs() {
       return this.$store.state.inputs.slice().reverse();
     }
   },
   methods: {
-    handleClick() {
+    clearLines() {
       this.$store.dispatch("clearOutput");
+    },
+    nextLine() {
+      this.$store.dispatch("addOutput", Content.story.chapter.one[this.line++]);
     }
   },
   created() {
-    console.log(this.story);
+    this.clearLines();
+    this.interval = setInterval(() => {
+      this.nextLine();
+    }, 3000);
   }
 };
 </script>
