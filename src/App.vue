@@ -8,8 +8,6 @@
 <script>
 import UserInput from "@/components/UserInput.vue";
 import GameOutput from "@/components/GameOutput.vue";
-// import TaskList from "@/components/TaskList.vue";
-// import TaskAdd from "@/components/TaskAdd.vue";
 
 export default {
   name: "app",
@@ -55,7 +53,6 @@ a {
 button {
   cursor: pointer;
   padding: 10px 15px;
-  font-size: 0.8em;
   border: none;
   background: none;
   border-radius: 3px;

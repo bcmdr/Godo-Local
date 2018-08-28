@@ -1,8 +1,6 @@
 <template>
   <article>
-    <section>
-      <p class="title">{{output.text}}</p>
-    </section>
+    <p class="title">{{text}}</p>
   </article>
 </template>
 
@@ -10,7 +8,7 @@
 export default {
   name: "OutputItem",
   props: {
-    output: Object
+    text: String
   },
   data() {
     return {};
@@ -18,7 +16,7 @@ export default {
   computed: {},
   methods: {},
   created() {
-    console.log(this.output.text);
+    console.log(this.text);
   }
 };
 </script>

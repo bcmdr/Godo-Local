@@ -2,9 +2,9 @@
   <div class="game-output" @click="handleClick">
     <section class="output-items">
       <output-item
-        v-for="(output, id) in inputs"
+        v-for="(item, id) in outputs"
         :key="id"
-        :output="output"
+        :text="item.text"
       />
     </section>
   </div>
@@ -19,15 +19,14 @@ export default {
   components: {
     OutputItem
   },
+  data() {
+    return {
+      line: 0
+    };
+  },
   computed: {
-    story() {
-      return Content.story.chapter.one;
-    },
-    tasks() {
-      return this.$store.state.tasks.slice();
-    },
     outputs() {
-      return this.$store.state.outputs.slice();
+      return this.$store.state.outputs.slice().reverse();
     },
     inputs() {
       return this.$store.state.inputs.slice().reverse();
@@ -35,12 +34,14 @@ export default {
   },
   methods: {
     handleClick() {
-      console.log("clearing");
-      this.$store.dispatch("clearInput");
+      this.$store.dispatch("clearOutput");
     }
   },
   created() {
-    console.log(this.story);
+    console.log(Content.story.chapter.one);
+    if (this.outputs.length === 0)
+      this.$store.dispatch("addOutput", Content.story.chapter.one[this.line]);
+    // this.$store.dispatch("loadOutput", Content.story.chapter.one);
   }
 };
 </script>

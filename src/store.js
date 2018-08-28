@@ -4,7 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
-const STORAGE_KEY = "vanished";
+const STORAGE_KEY = "vanished-0.0.1";
 
 const localStoragePlugin = store => {
   store.subscribe((mutation, { tasks }) => {
@@ -14,6 +14,7 @@ const localStoragePlugin = store => {
 
 export default new Vuex.Store({
   state: {
+    chapter: 1,
     tasks: [],
     inputs: [],
     outputs: []
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     },
     clearOutput(state) {
       state.outputs = [];
+    },
+    loadOutput(state, { arr }) {
+      state.outputs = state.outputs.concat(arr);
     },
     addOutput(state, output) {
       state.outputs.push(output);
@@ -55,6 +59,10 @@ export default new Vuex.Store({
         text
       });
     },
+
+    // loadOutput({ commit }, arr) {
+    //   commit("loadOutput", { arr });
+    // },
 
     clearOutput({ commit }) {
       commit("clearOutput");

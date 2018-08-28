@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addTask()">
+  <form @submit.prevent="logInput()">
     <input type="text" v-model="inputText" placeholder="Type Here..." class="user-input">
     <button @click.prevent="handleSubmitClick" type="submit" :class="{ active: inputText }">Enter</button>
   </form>
@@ -48,7 +48,7 @@ input[type="text"] {
   padding: 10px;
   border: none;
   margin-right: 10px;
-  font-size: 1rem;
+  font-size: 0.8rem;
   background: transparent;
 }
 
@@ -56,5 +56,6 @@ button {
   color: #111;
   border: 1px solid white;
   background: #eee;
+  font-size: 0.8rem;
 }
 </style>
